@@ -1,0 +1,11 @@
+# Git ignore file for the Mangystau Hub Bot project
+.env
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+*.log

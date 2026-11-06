@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mangystau Hub • AI-ассистент IT-хаба</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (Astana Hub blue badge) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230052FF'/%3E%3Cpath d='M9 16l4 4 10-10' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Верхняя шапка сайта (Header) -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="brand-avatar">
+                    <div class="avatar-gradient">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="online-indicator" title="AI-ассистент онлайн"></span>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-title-wrap">
+                        <h1 class="brand-title">Mangystau Hub</h1>
+                        <span class="brand-badge">Astana Hub</span>
+                    </div>
+                    <p class="brand-subtitle" id="headerSubtitle">Региональный IT-хаб • г. Актау</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Переключатель языка -->
+                <div class="lang-switch" role="group" aria-label="Выбор языка">
+                    <button type="button" class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+                    <button type="button" class="lang-btn" data-lang="kz">🇰🇿 KZ</button>
+                </div>
+
+                <!-- Кнопка связи с оператором в WhatsApp -->
+                <a href="https://wa.me/77789807454" target="_blank" rel="noopener noreferrer" class="operator-btn" title="Связаться с оператором в WhatsApp">
+                    <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.05 20.15ZM16.57 14.39C16.32 14.27 15.1 13.67 14.87 13.58C14.65 13.5 14.48 13.46 14.32 13.7C14.16 13.94 13.69 14.5 13.54 14.67C13.4 14.84 13.25 14.86 13 14.74C12.75 14.62 11.95 14.35 11 13.51C10.26 12.85 9.77 12.04 9.62 11.8C9.47 11.55 9.61 11.42 9.73 11.3C9.84 11.19 9.98 11.01 10.1 10.87C10.22 10.73 10.26 10.63 10.34 10.46C10.42 10.3 10.38 10.15 10.32 10.03C10.26 9.91 9.77 8.7 9.57 8.21C9.37 7.73 9.17 7.8 9.02 7.79C8.88 7.78 8.71 7.78 8.55 7.78C8.38 7.78 8.12 7.84 7.89 8.09C7.66 8.34 7.02 8.94 7.02 10.16C7.02 11.38 7.91 12.56 8.03 12.72C8.16 12.89 9.77 15.37 12.24 16.44C12.83 16.7 13.28 16.85 13.64 16.96C14.23 17.15 14.77 17.12 15.19 17.06C15.66 16.99 16.64 16.47 16.84 15.89C17.05 15.32 17.05 14.83 16.99 14.73C16.93 14.63 16.82 14.51 16.57 14.39Z"/>
+                    </svg>
+                    <span class="operator-text" id="operatorBtnText">Оператор</span>
+                </a>
+
+                <!-- Кнопка очистки истории диалога -->
+                <button type="button" id="clearChatBtn" class="icon-btn" title="Очистить диалог">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Основная область сообщений чата -->
+        <main class="chat-container" id="chatContainer">
+            <!-- 1. Уведомление о политике конфиденциальности (требование ТЗ) -->
+            <div class="privacy-banner" id="privacyBanner">
+                <svg class="privacy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <div class="privacy-content">
+                    <h3 id="privacyTitle">🔒 Политика конфиденциальности</h3>
+                    <p id="privacyText">Наш сайт и виртуальный AI-ассистент не собирают и не хранят ваши личные или персональные данные без вашего согласия. Общение полностью безопасно и конфиденциально.</p>
+                </div>
+            </div>
+
+            <!-- 2. Первое приветственное сообщение ассистента -->
+            <div class="message-row bot" id="initialBotMessage">
+                <div class="msg-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                        <path d="M2 17L12 22L22 17"/>
+                        <path d="M2 12L12 17L22 12"/>
+                    </svg>
+                </div>
+                <div class="msg-body">
+                    <div class="msg-bubble" id="initialBotBubble">
+                        <p>Здравствуйте! 👋 Я виртуальный консультант <strong>Mangystau Hub</strong> в городе Актау.</p>
+                        <p>Я с радостью помогу вам:</p>
+                        <ul>
+                            <li>📅 Узнать <strong>актуальные мероприятия</strong> на следующей неделе и позже (интеграция с Astana Hub)</li>
+                            <li>🏢 Рассказать о <strong>деятельности хаба</strong>, коворкинге и образовательных курсах</li>
+                            <li>📍 Подсказать <strong>адрес</strong> (г. Актау, 6 мкр., зд. 50) и <strong>часы работы</strong> (Пн-Пт 09:00 - 19:00)</li>
+                            <li>📞 Найти <strong>контакты</strong> и соцсети</li>
+                            <li>💬 При необходимости перевести вас на <strong>живого сотрудника в WhatsApp</strong>!</li>
+                        </ul>
+                        <p>Чем я могу вам помочь?</p>
+                    </div>
+                    <span class="msg-time" id="initialBotTime">Онлайн</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Панель быстрых подсказок (Quick Chips) -->
+        <section class="quick-chips-wrapper" aria-label="Быстрые вопросы">
+            <div class="quick-chips" id="quickChipsContainer">
+                <!-- Наполняется скриптом в зависимости от выбранного языка -->
+            </div>
+        </section>
+
+        <!-- Нижняя панель ввода сообщения -->
+        <footer class="app-footer">
+            <form id="chatForm" class="input-form">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="messageInput" 
+                        class="chat-input" 
+                        rows="1" 
+                        placeholder="Напишите ваш вопрос о Mangystau Hub... (Enter для отправки)"
+                        autocomplete="off"
+                        required></textarea>
+                </div>
+                <button type="submit" id="sendBtn" class="send-btn" title="Отправить сообщение" aria-label="Отправить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+            <div class="footer-note">
+                <span>Mangystau Hub • Powered by Astana Hub & Google Gemini Flash •</span>
+                <a href="https://wa.me/77789807454" target="_blank" rel="noopener noreferrer">WhatsApp поддержка</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript логика -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
